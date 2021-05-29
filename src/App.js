@@ -9,6 +9,7 @@ const App = () => {
   const [numbers, setnumbers] = useState(0);
 
   const inputChange = () => {
+    console.log(input_ref?.current?.textContent?.split(/\r\n|\r|\n/).length);
     setnumbers(input_ref?.current?.textContent?.split(/\r\n|\r|\n/).length);
     let Json = input_ref.current.textContent;
     try {
@@ -28,16 +29,16 @@ const App = () => {
   };
   const GetNumbered = () => {
     const divs = [];
-    for (let i = 0; i < numbers; i++)
+    for (let i = 1; i <= numbers; i++)
       divs.push(
         <div key={i} className="number">
           {i}
         </div>
       );
-    return [...divs];
+    return divs.length > 1 ? [...divs] : [];
   };
 
-  useEffect(() => {}, [isError, numbers]);
+  useEffect(() => { }, [isError, numbers]);
 
   return (
     <div className="container">
